@@ -1,0 +1,19 @@
+.seat-row-container {
+  display: flex;
+  gap: 1rem;
+}
+
+h2 {
+  width: 20px;
+}
+
+.seats-container {
+  display: flex;
+  gap: 3rem;
+}
+
+.seats-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
