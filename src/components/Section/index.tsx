@@ -13,7 +13,7 @@ const Section: React.FC<Props> = (p: Props) => {
     <div className="section-container">
       <h1>{p.data.title}</h1>
       <div className='section-seats'>
-        {p.data.rows.map((row, index) => ('title' in row ? <SeatRow key={index} data={row} /> : <EmergencyExit data={row} />))}
+        {p.data.rows.map((row, index) => ('title' in row ? <SeatRow key={index} data={row} /> : <EmergencyExit key={index} data={row} />))}
       </div>
     </div>
   );
