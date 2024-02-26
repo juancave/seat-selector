@@ -1,5 +1,4 @@
 import React from 'react';
-import './Seat.css';
 import { SeatState, Seat as SeatType } from '../../types';
 
 interface Props {
@@ -9,27 +8,30 @@ interface Props {
 
 const Seat: React.FC<Props> = (p: Props) => {
   const [showInfo, setShowInfo] = React.useState<boolean>(false);
+  const isDisabled = [SeatState.BUSY, SeatState.UNAVAILABLE].includes(p.seat.state);
+  const showDetail = () => setShowInfo(true);
+  const hideDetail = () => setShowInfo(false);
   return (
-    <div className="seat-container">  
+    <div className="relative">  
       {showInfo && (
-        <div className='seat-information'>
-          <div className='seat-information-element'>
-            <b>Seat: </b><span>{p.rowName}{p.seat.name}</span>
+        <div className='flex flex-col self-start absolute gap-1 w-fit h-fit p-2 z-10 bg-gray-300 rounded text-base left-12'>
+          <div className='flex gap-1'>
+            <span className="font-bold">Seat: </span><span>{p.rowName}{p.seat.name}</span>
           </div>
-          <div className='seat-information-element'>
-            <b>Price: </b><span>{p.seat.price}</span>
+          <div className='flex gap-1'>
+            <span className="font-bold">Price: </span><span>{p.seat.price}</span>
           </div>
-          <div className='seat-information-element'>
-            <b>State: </b><span>{p.seat.state}</span>
+          <div className='flex gap-1'>
+            <span className="font-bold">State: </span><span>{p.seat.state}</span>
           </div>
         </div>
       )}
       <button
-        className="seat-button"
-        onFocus={() => setShowInfo(true)}
-        onBlur={() => setShowInfo(false)}
-        onMouseEnter={() => setShowInfo(true)}
-        onMouseLeave={() => setShowInfo(false)}
+        className={`${isDisabled ? 'opacity-50 cursor-not-allowed' : ''} bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow`}
+        onFocus={showDetail}
+        onBlur={hideDetail}
+        onMouseEnter={showDetail}
+        onMouseLeave={hideDetail}
         disabled={p.seat.state === SeatState.BUSY}
         type='button' onClick={() => console.log('Seat', p.seat)}
       >
