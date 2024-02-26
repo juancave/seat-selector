@@ -12,6 +12,7 @@ export interface SeatsRow {
 export enum SeatState {
   AVAILABLE = 'available',
   BUSY = 'busy',
+  UNAVAILABLE = 'unavailable',
 }
 
 export interface Seat {
