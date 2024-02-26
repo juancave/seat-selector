@@ -2,8 +2,8 @@ import { AirplaneData, EmergencyExit, SeatState, SeatsRow } from "../types";
 
 const generateFirstClassRow = (title: string): SeatsRow => ({
   title,
-  leftSeats: [{ name: 'A', price: 30000, state: SeatState.AVAILABLE }, { name: 'B', price: 24000, state: SeatState.AVAILABLE }, { name: 'C', price: 20000, state: SeatState.AVAILABLE }],
-  rightSeats: [{ name: 'D', price: 20000, state: SeatState.AVAILABLE }, { name: 'E', price: 24000, state: SeatState.AVAILABLE }, { name: 'K', price: 30000, state: SeatState.AVAILABLE }],
+  leftSeats: [{ name: 'A', price: 30000, state: SeatState.AVAILABLE }, { name: 'B', price: 24000, state: SeatState.AVAILABLE }],
+  rightSeats: [{ name: 'D', price: 20000, state: SeatState.AVAILABLE }, { name: 'E', price: 24000, state: SeatState.AVAILABLE }],
 });
 
 const generateEconomyRow = (title: string): SeatsRow => ({
