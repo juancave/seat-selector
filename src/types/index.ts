@@ -25,3 +25,7 @@ export interface EmergencyExit {
   readonly right: boolean;
   readonly left: boolean;
 }
+
+export function isSeatType(row: SeatsRow | EmergencyExit): row is SeatsRow {
+  return 'title' in row;
+}
