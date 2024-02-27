@@ -1,6 +1,6 @@
 import React from 'react';
-import { SeatsRow } from '../../types';
-import Seat from '../Seat';
+import { SeatsRow } from 'types';
+import Seat from 'components/Seat';
 
 interface Props {
   readonly data: SeatsRow;

@@ -1,7 +1,7 @@
 import React from 'react';
-import SeatRow from '../SeatRow';
-import { AirplaneData, isSeatType } from '../../types';
-import EmergencyExit from '../EmergencyExit';
+import SeatRow from 'components/SeatRow';
+import { AirplaneData, isSeatType } from 'types';
+import EmergencyExit from 'components/EmergencyExit';
 
 interface Props {
   readonly data: AirplaneData;

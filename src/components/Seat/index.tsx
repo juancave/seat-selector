@@ -1,5 +1,5 @@
 import React from 'react';
-import { SeatState, Seat as SeatType } from '../../types';
+import { SeatState, Seat as SeatType } from 'types';
 
 interface Props {
   readonly seat: SeatType;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { EmergencyExit as EmergencyExitType } from '../../types';
+import { EmergencyExit as EmergencyExitType } from 'types';
 
 interface Props {
   readonly data: EmergencyExitType;
