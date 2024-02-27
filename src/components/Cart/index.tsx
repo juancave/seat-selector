@@ -8,7 +8,7 @@ const Cart: React.FC = () => {
   const syncSoldSeats = useCartStore((state) => state.syncSoldSeats);
 
   return (
-    <div className="flex flex-col w-60 gap-5 rounded overflow-hidden fixed top-1/6 right-96 p-4 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
+    <div className="flex flex-col w-60 gap-5 rounded overflow-hidden p-4 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
       <h2>Selected seats:</h2>
       <div className='flex flex-col gap-1'>
         {seats.map((seat, index) => (

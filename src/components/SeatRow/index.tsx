@@ -12,10 +12,10 @@ const SeatRow: React.FC<Props> = (p: Props) => {
       <h2 className='w-5'>{p.data.title}</h2>
       <div className='flex gap-12 w-full'>
         <div className='flex items-center justify-around gap-4 w-2/4'>
-          {p.data.leftSeats.map((seat, index) => (<Seat rowName={p.data.title} key={index} seat={seat} />))}
+          {p.data.leftSeats.map((seat, index) => (<Seat key={index} seat={seat} />))}
         </div>
         <div className='flex items-center justify-around gap-4 w-2/4'>
-          {p.data.rightSeats.map((seat, index) => (<Seat rowName={p.data.title} key={index} seat={seat} />))}
+          {p.data.rightSeats.map((seat, index) => (<Seat key={index} seat={seat} />))}
         </div>
       </div>
       <h2 className='w-5'>{p.data.title}</h2>

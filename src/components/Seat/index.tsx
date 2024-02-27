@@ -4,7 +4,6 @@ import useCartStore from 'store/cart';
 
 interface Props {
   readonly seat: SeatType;
-  readonly rowName: string;
 }
 
 const Seat: React.FC<Props> = (p: Props) => {
@@ -22,15 +21,12 @@ const Seat: React.FC<Props> = (p: Props) => {
   return (
     <div className="relative">  
       {showInfo && (
-        <div className='flex flex-col self-start absolute gap-1 w-fit h-fit p-2 z-10 bg-gray-300 rounded text-base left-12'>
+        <div className='flex flex-col self-start absolute gap-1 w-fit h-fit p-3 z-10 bg-gray-300 rounded text-base left-12'>
           <div className='flex gap-1'>
-            <span className="font-bold">Seat: </span><span>{p.rowName}{p.seat.name}</span>
+            <span className="font-bold">Seat: </span><span>{p.seat.row}{p.seat.name}</span>
           </div>
           <div className='flex gap-1'>
-            <span className="font-bold">Price: </span><span>{p.seat.price}</span>
-          </div>
-          <div className='flex gap-1'>
-            <span className="font-bold">State: </span><span>{p.seat.state}</span>
+            <span className="font-bold">Price: </span><span>${p.seat.price}</span>
           </div>
         </div>
       )}
