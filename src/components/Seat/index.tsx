@@ -1,5 +1,6 @@
 import React from 'react';
 import { SeatState, Seat as SeatType } from 'types';
+import useCartStore from 'store/cart';
 
 interface Props {
   readonly seat: SeatType;
@@ -8,9 +9,16 @@ interface Props {
 
 const Seat: React.FC<Props> = (p: Props) => {
   const [showInfo, setShowInfo] = React.useState<boolean>(false);
-  const isDisabled = [SeatState.BUSY, SeatState.UNAVAILABLE].includes(p.seat.state);
+  const addSeat = useCartStore((state) => state.addSeat);
+  const cartSeats = useCartStore((state) => state.seats);
+  const soldSeats = useCartStore((state) => state.soldSeats);
+  const isDisabled = [SeatState.BUSY, SeatState.UNAVAILABLE].includes(p.seat.state)
+    || soldSeats.some((seat) => seat.name === p.seat.name && seat.row === p.seat.row);
+  const isSelected = cartSeats.some((seat) => seat.name === p.seat.name && seat.row === p.seat.row);
+
   const showDetail = () => setShowInfo(true);
   const hideDetail = () => setShowInfo(false);
+
   return (
     <div className="relative">  
       {showInfo && (
@@ -27,13 +35,14 @@ const Seat: React.FC<Props> = (p: Props) => {
         </div>
       )}
       <button
-        className={`${isDisabled ? 'opacity-50 cursor-not-allowed' : ''} bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow`}
+        className={`${isDisabled ? 'opacity-50 cursor-not-allowed' : ''} ${isSelected ? 'opacity-50 cursor-not-allowed bg-green-700 text-white hover:bg-green-600' : ''} bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow`}
         onFocus={showDetail}
         onBlur={hideDetail}
         onMouseEnter={showDetail}
         onMouseLeave={hideDetail}
-        disabled={p.seat.state === SeatState.BUSY}
-        type='button' onClick={() => console.log('Seat', p.seat)}
+        disabled={isDisabled || isSelected}
+        type='button'
+        onClick={() => addSeat(p.seat)}
       >
         <p>{p.seat.name}</p>
       </button>
