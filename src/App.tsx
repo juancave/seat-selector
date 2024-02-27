@@ -1,27 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import AirplaneSeats from './components/AirplaneSeats';
-import { airplaneDataMock } from './data';
+import NavBar from './components/NavBar';
+import { Route, Routes } from 'react-router-dom';
+import HomePage from './pages/Home';
+import AirplanePage from './pages/Airplane';
+import TheaterPage from './pages/Theater';
 
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-      <AirplaneSeats name="Airbus A380" sections={airplaneDataMock} />
+      <NavBar />
+      <Routes>
+        <Route path="" element={ <HomePage/> } />
+        <Route path="/airplane" element={ <AirplanePage/> } />
+        <Route path="/theater" element={ <TheaterPage/> } />
+      </Routes>
     </div>
   );
 }
