@@ -1,15 +1,22 @@
 import { AirplaneData, EmergencyExit, SeatState, SeatsRow } from "../types";
 
+const generateSeat = (row: string, name: string, price: number, state: SeatState) => ({
+  row,
+  name,
+  price,
+  state,
+});
+
 const generateFirstClassRow = (title: string): SeatsRow => ({
   title,
-  leftSeats: [{ name: 'A', price: 30000, state: SeatState.AVAILABLE }, { name: 'B', price: 24000, state: SeatState.AVAILABLE }],
-  rightSeats: [{ name: 'D', price: 20000, state: SeatState.AVAILABLE }, { name: 'E', price: 24000, state: SeatState.AVAILABLE }],
+  leftSeats: [generateSeat(title, 'A', 30000, SeatState.AVAILABLE), generateSeat(title, 'B', 24000, SeatState.AVAILABLE)],
+  rightSeats: [generateSeat(title, 'D', 20000, SeatState.AVAILABLE), generateSeat(title, 'E', 24000, SeatState.AVAILABLE)],
 });
 
 const generateEconomyRow = (title: string): SeatsRow => ({
   title,
-  leftSeats: [{ name: 'A', price: 15000, state: SeatState.AVAILABLE }, { name: 'B', price: 12000, state: SeatState.AVAILABLE }, { name: 'C', price: 10000, state: SeatState.AVAILABLE }],
-  rightSeats: [{ name: 'D', price: 10000, state: SeatState.AVAILABLE }, { name: 'E', price: 12000, state: SeatState.AVAILABLE }, { name: 'K', price: 15000, state: SeatState.AVAILABLE }],
+  leftSeats: [generateSeat(title, 'A', 15000, SeatState.AVAILABLE), generateSeat(title, 'B', 12000, SeatState.AVAILABLE), generateSeat(title, 'C', 10000, SeatState.AVAILABLE)],
+  rightSeats: [generateSeat(title, 'D', 10000, SeatState.AVAILABLE), generateSeat(title, 'E', 12000, SeatState.AVAILABLE), generateSeat(title, 'K', 15000, SeatState.AVAILABLE)],
 });
 
 const generateEmergencyExit = (): EmergencyExit => ({

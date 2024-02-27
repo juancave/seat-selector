@@ -16,6 +16,7 @@ export enum SeatState {
 }
 
 export interface Seat {
+  readonly row: string;
   readonly price: number;
   readonly state: SeatState;
   readonly name: string;
