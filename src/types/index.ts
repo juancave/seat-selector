@@ -18,16 +18,24 @@ export interface Airport {
   readonly code: string;
 }
 
-export interface Plane {
+export interface Aircraft {
   readonly reference: string;
   readonly model: string;
   readonly capacity: number;
 }
 
+export interface Schedule {
+  readonly departure: string;
+  readonly arrival: string;
+  readonly timeInMinutes: number;
+  readonly date: string;
+}
+
 export interface FlightInformation {
   readonly origin: Airport;
-  readonly destiny: Airport;
-  readonly plane: Plane;
+  readonly destination: Airport;
+  readonly aircraft: Aircraft;
+  readonly schedule: Schedule;
 }
 
 export enum SeatState {

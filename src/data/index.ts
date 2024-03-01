@@ -1,4 +1,4 @@
-import { AirplaneData, EmergencyExit, Seat, SeatState, SeatType, SeatsRow, SeatLocation } from "types";
+import { AirplaneData, EmergencyExit, Seat, SeatState, SeatType, SeatsRow, SeatLocation, FlightInformation } from "types";
 
 const generateSeat = (row: string, name: string, price: number, state: SeatState, type: SeatType, location: SeatLocation): Seat => ({
   row,
@@ -26,7 +26,7 @@ const generateEmergencyExit = (): EmergencyExit => ({
   left: true,
 });
 
-export const airplaneDataMock: AirplaneData[] = [
+export const airplaneSeatsDataMock: AirplaneData[] = [
   {
     title: 'First Class',
     leftHeaders: ['A', 'B'],
@@ -65,3 +65,29 @@ export const airplaneDataMock: AirplaneData[] = [
     ],
   },
 ];
+
+export const airplaneInformationDataMock: FlightInformation = {
+  origin: {
+    city: 'Medellín',
+    state: 'Antioquia',
+    country: 'Colombia',
+    code: 'MDE',
+  },
+  destination: {
+    city: 'Miami',
+    state: 'Florida',
+    country: 'United States of America',
+    code: 'MIA',
+  },
+  schedule: {
+    departure: '9:23 am',
+    arrival: '10:52 am',
+    timeInMinutes: 235,
+    date: 'December 28th, 2024',
+  },
+  aircraft: {
+    model: 'Airbus',
+    reference: '380',
+    capacity: 80,
+  }
+};
