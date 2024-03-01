@@ -14,7 +14,7 @@ const generateSeat = (row: string, name: string, price: number, state: SeatState
 const generateFirstClassRow = (title: string): SeatsRow => ({
   title,
   leftSeats: [generateSeat(title, 'A', 30000, SeatState.UNAVAILABLE, SeatType.FIRST_CLASS, SeatLocation.WINDOW), generateSeat(title, 'B', 24000, SeatState.AVAILABLE, SeatType.FIRST_CLASS, SeatLocation.STANDARD)],
-  rightSeats: [generateSeat(title, 'D', 20000, SeatState.AVAILABLE, SeatType.FIRST_CLASS, SeatLocation.CORRIDOR), generateSeat(title, 'E', 24000, SeatState.AVAILABLE, SeatType.FIRST_CLASS, SeatLocation.WINDOW)],
+  rightSeats: [generateSeat(title, 'D', 24000, SeatState.AVAILABLE, SeatType.FIRST_CLASS, SeatLocation.CORRIDOR), generateSeat(title, 'E', 30000, SeatState.AVAILABLE, SeatType.FIRST_CLASS, SeatLocation.WINDOW)],
 });
 
 const generateEconomyRow = (title: string): SeatsRow => ({
