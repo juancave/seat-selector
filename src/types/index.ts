@@ -1,6 +1,8 @@
 export type AirplaneData = {
-  title: string,
-  rows: (SeatsRow | EmergencyExit)[]
+  readonly title: string;
+  readonly leftHeaders: string[];
+  readonly rightHeaders: string[];
+  readonly rows: (SeatsRow | EmergencyExit)[];
 }
 
 export interface SeatsRow {
@@ -15,11 +17,24 @@ export enum SeatState {
   UNAVAILABLE = 'unavailable',
 }
 
+export enum SeatType {
+  ECONOMY = 'economy',
+  FIRST_CLASS = 'first_class',
+}
+
+export enum SeatLocation {
+  CORRIDOR = 'corridor',
+  WINDOW = 'window',
+  STANDARD = 'standard',
+}
+
 export interface Seat {
   readonly row: string;
   readonly price: number;
   readonly state: SeatState;
   readonly name: string;
+  readonly type: SeatType;
+  readonly location: SeatLocation;
 }
 
 export interface EmergencyExit {
