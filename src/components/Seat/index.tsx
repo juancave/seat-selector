@@ -8,6 +8,13 @@ interface Props {
   readonly seat: SeatType;
 }
 
+export const seatStyles = {
+  base: 'border rounded-md shadow w-10 h-10 flex items-center justify-center',
+  selected: 'bg-fuchsia-600 border-fuchsia-700 hover:bg-fuchsia-700 hover:border-fuchsia-600',
+  disabled: 'bg-gray-100 border-gray-300 hover:gray-200 hover:border-gray-400',
+  available: 'bg-sky-500 border-sky-500 hover:bg-sky-700 hover:border-sky-400',
+};
+
 const Seat: React.FC<Props> = (p: Props) => {
   const [showInfo, setShowInfo] = React.useState<boolean>(false);
   const addSeat = useCartStore((state) => state.addSeat);
@@ -46,10 +53,11 @@ const Seat: React.FC<Props> = (p: Props) => {
         </div>
       )}
       <div
-        className={classNames('border rounded-md shadow w-10 h-10 flex items-center justify-center', {
-          'bg-gray-100 border-gray-300 hover:gray-200 hover:border-gray-400 cursor-not-allowed': isDisabled,
-          'bg-fuchsia-600 border-fuchsia-700 hover:bg-fuchsia-700 hover:border-fuchsia-600': isSelected,
-          'bg-sky-500 border-sky-500 hover:bg-sky-700 hover:border-sky-400': !isDisabled && !isSelected,
+        className={classNames(seatStyles.base, {
+          [seatStyles.disabled]: isDisabled,
+          'cursor-not-allowed': isDisabled,
+          [seatStyles.selected]: isSelected,
+          [seatStyles.available]: !isDisabled && !isSelected,
         })}
         role='button'
         onFocus={showDetail}
