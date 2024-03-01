@@ -1,3 +1,5 @@
+import { IconNames } from "components/Icons";
+
 export type AirplaneData = {
   readonly title: string;
   readonly leftHeaders: string[];
@@ -71,4 +73,11 @@ export interface EmergencyExit {
 
 export function isSeatType(row: SeatsRow | EmergencyExit): row is SeatsRow {
   return 'title' in row;
+}
+
+export interface LegendSeat {
+  readonly styles: string;
+  readonly text: string;
+  readonly price: string;
+  readonly icon: IconNames | null;
 }

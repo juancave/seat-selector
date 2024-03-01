@@ -1,6 +1,6 @@
 import React from 'react';
 import AirplaneSeats from 'components/AirplaneSeats';
-import { airplaneSeatsDataMock, airplaneInformationDataMock } from 'data';
+import { airplaneSeatsDataMock, airplaneInformationDataMock, legendSeatsMockData } from 'data';
 import Cart from 'components/Cart';
 import AirplaneLegend from 'components/AirplaneLegend';
 import FlightInformation from 'components/FlightInformation';
@@ -11,7 +11,7 @@ const AirplanePage: React.FC = () => {
       <AirplaneSeats data={airplaneInformationDataMock} sections={airplaneSeatsDataMock} />
       <div className='flex flex-col gap-10'>
         <div className='py-28 hidden md:block'></div>
-        <AirplaneLegend />
+        <AirplaneLegend data={legendSeatsMockData} />
         <FlightInformation data={airplaneInformationDataMock} />
         <Cart />
       </div>

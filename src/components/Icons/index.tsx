@@ -49,6 +49,24 @@ const Calendar: React.FC = () => {
   );
 };
 
+enum IconNames {
+  PREMIUN_SEAT = 'PREMIUN_SEAT',
+  BEST_SEAT = 'BEST_SEAT',
+  BUSY_SEAT = 'BUSY_SEAT',
+  SELECTED_SEAT = 'SELECTED_SEAT',
+  RIGHT_ARROW = 'RIGHT_ARROW',
+  CALENDAR = 'CALENDAR',
+};
+
+const ICONS = {
+  [IconNames.PREMIUN_SEAT]: PremiunSeat,
+  [IconNames.BEST_SEAT]: BestSeat,
+  [IconNames.BUSY_SEAT]: BusySeat,
+  [IconNames.SELECTED_SEAT]: SelectedSeat,
+  [IconNames.RIGHT_ARROW]: RightArrow,
+  [IconNames.CALENDAR]: Calendar,
+};
+
 export {
   PremiunSeat,
   BestSeat,
@@ -56,4 +74,6 @@ export {
   SelectedSeat,
   RightArrow,
   Calendar,
+  IconNames,
+  ICONS,
 };

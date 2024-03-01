@@ -1,54 +1,29 @@
 import React from 'react';
-import { BestSeat, BusySeat, PremiunSeat, SelectedSeat } from 'components/Icons';
+import { ICONS } from 'components/Icons';
 import { seatStyles } from 'components/Seat';
+import { LegendSeat } from 'types';
 
-const AirplaneLegend: React.FC = () => {
+interface Props {
+  readonly data: LegendSeat[];
+}
+
+const AirplaneLegend: React.FC<Props> = (p: Props) => {
   return (
     <div className="flex flex-col w-72 gap-5 rounded overflow-hidden p-4 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
-      <div className='flex justify-between items-center border-b-4 pb-1'>
-        <div className='flex flex-row gap-1 items-center'>
-          <div className={`${seatStyles.base} ${seatStyles.disabled}`}>
-            <BusySeat />
+      {p.data.map((legend, index) => {
+        const Icon = legend.icon ? ICONS[legend.icon] : null;
+        return (
+          <div key={index} className='flex justify-between items-center border-b-4 pb-1'>
+            <div className='flex flex-row gap-1 items-center'>
+              <div className={`${seatStyles.base} ${legend.styles}`}>
+                {Icon && <Icon />}
+              </div>
+              <span className='text-sm'>{legend.text}</span>
+            </div>
+            <span className='text-sm font-bold'>{legend.price}</span>
           </div>
-          <span className='text-sm'>Unavailable</span>
-        </div>
-        <span className='text-sm font-bold'>$...</span>
-      </div>
-      <div className='flex justify-between items-center border-b-4 pb-1'>
-        <div className='flex flex-row gap-1 items-center'>
-        <div className={`${seatStyles.base} ${seatStyles.selected}`}>
-            <SelectedSeat />
-          </div>
-          <span className='text-sm'>Selected</span>
-        </div>
-        <span className='text-sm font-bold'>$...</span>
-      </div>
-      <div className='flex justify-between items-center border-b-4 pb-1'>
-        <div className='flex flex-row gap-1 items-center'>
-        <div className={`${seatStyles.base} ${seatStyles.available}`}>
-            <PremiunSeat />
-          </div>
-          <span className='text-sm'>First Class</span>
-        </div>
-        <span className='text-sm font-bold'>From $20000</span>
-      </div>
-      <div className='flex justify-between items-center border-b-4 pb-1'>
-        <div className='flex flex-row gap-1 items-center'>
-        <div className={`${seatStyles.base} ${seatStyles.available}`}>
-            <BestSeat />
-          </div>
-          <span className='text-sm'>Best View</span>
-        </div>
-        <span className='text-sm font-bold'>From $15000</span>
-      </div>
-      <div className='flex justify-between items-center'>
-        <div className='flex flex-row gap-1 items-center'>
-        <div className={`${seatStyles.base} ${seatStyles.available}`}>
-          </div>
-          <span className='text-sm'>Standart Seat</span>
-        </div>
-        <span className='text-sm font-bold'>From $10000</span>
-      </div>
+        );
+      })}
     </div>
   );
 };

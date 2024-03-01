@@ -1,4 +1,6 @@
-import { AirplaneData, EmergencyExit, Seat, SeatState, SeatType, SeatsRow, SeatLocation, FlightInformation } from "types";
+import { IconNames } from "components/Icons";
+import { seatStyles } from 'components/Seat';
+import { AirplaneData, EmergencyExit, Seat, SeatState, SeatType, SeatsRow, SeatLocation, FlightInformation, LegendSeat } from "types";
 
 const generateSeat = (row: string, name: string, price: number, state: SeatState, type: SeatType, location: SeatLocation): Seat => ({
   row,
@@ -63,6 +65,39 @@ export const airplaneSeatsDataMock: AirplaneData[] = [
       generateEconomyRow('19'),
       generateEconomyRow('20'),
     ],
+  },
+];
+
+export const legendSeatsMockData: LegendSeat[] = [
+  {
+    icon: IconNames.BUSY_SEAT,
+    styles: seatStyles.disabled,
+    text: 'Unavailable',
+    price: '$...',
+  },
+  {
+    icon: IconNames.SELECTED_SEAT,
+    styles: seatStyles.selected,
+    text: 'Selected',
+    price: '$...',
+  },
+  {
+    icon: IconNames.PREMIUN_SEAT,
+    styles: seatStyles.available,
+    text: 'First Class',
+    price: 'From $20000',
+  },
+  {
+    icon: IconNames.BEST_SEAT,
+    styles: seatStyles.available,
+    text: 'Best View',
+    price: 'From $15000',
+  },
+  {
+    icon: null,
+    styles: seatStyles.available,
+    text: 'Standart Seat',
+    price: 'From $10000',
   },
 ];
 
