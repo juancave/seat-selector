@@ -11,6 +11,25 @@ export interface SeatsRow {
   readonly rightSeats: Seat[];
 }
 
+export interface Airport {
+  readonly city: string;
+  readonly state: string;
+  readonly country: string;
+  readonly code: string;
+}
+
+export interface Plane {
+  readonly reference: string;
+  readonly model: string;
+  readonly capacity: number;
+}
+
+export interface FlightInformation {
+  readonly origin: Airport;
+  readonly destiny: Airport;
+  readonly plane: Plane;
+}
+
 export enum SeatState {
   AVAILABLE = 'available',
   BUSY = 'busy',
