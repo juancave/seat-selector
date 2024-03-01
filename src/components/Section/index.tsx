@@ -10,7 +10,7 @@ interface Props {
 
 const Section: React.FC<Props> = (p: Props) => {
   return (
-    <div className="border-b border-gray-300 py-4">
+    <div className="border-gray-300 py-4">
       <SectionHeaders data={p.data} />
       <div className='flex flex-col items-center gap-4'>
         {p.data.rows.map((row, index) => (isSeatType(row) ? <SeatRow key={index} data={row} /> : <EmergencyExit key={index} data={row} />))}

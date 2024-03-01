@@ -41,7 +41,7 @@ const AirplaneLegend: React.FC = () => {
         </div>
         <span className='text-sm font-bold'>From $15000</span>
       </div>
-      <div className='flex justify-between items-center border-b-4 pb-1'>
+      <div className='flex justify-between items-center'>
         <div className='flex flex-row gap-1 items-center'>
         <div className={`${seatStyles.base} ${seatStyles.available}`}>
           </div>
