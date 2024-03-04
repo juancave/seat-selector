@@ -43,14 +43,11 @@ const Seat: React.FC<Props> = (p: Props) => {
   return (
     <div className="relative">  
       {showInfo && (
-        <div className='flex flex-col self-start absolute gap-1 w-fit h-fit p-3 z-10 bg-gray-300 rounded text-base left-12'>
-          <div className='flex gap-1'>
-            <span className="font-bold">Seat: </span><span>{p.seat.row}{p.seat.name}</span>
-          </div>
-          <div className='flex gap-1'>
-            <span className="font-bold">Price: </span><span>${p.seat.price}</span>
-          </div>
-        </div>
+        <SeatInformation
+          isDisabled={isDisabled}
+          isSelected={isSelected}
+          seat={p.seat}
+        />
       )}
       <div
         className={classNames(seatStyles.base, {
@@ -74,6 +71,30 @@ const Seat: React.FC<Props> = (p: Props) => {
         )}
         {isDisabled && <BusySeat />}
         {isSelected && <SelectedSeat />}
+      </div>
+    </div>
+  );
+};
+
+const SeatInformation: React.FC<{
+  readonly isSelected: boolean;
+  readonly isDisabled: boolean;
+  readonly seat: SeatType;
+}> = ({
+  isSelected,
+  isDisabled,
+  seat,
+}) => {
+  return (
+    <div className='flex flex-col self-start absolute gap-1 w-fit h-fit p-3 z-10 bg-zinc-50 shadow-[0_3px_10px_rgb(0,0,0,0.5)] rounded left-12 text-sm'>
+      <div className='flex gap-1'>
+        <span className="font-bold">Status: </span><span>{isSelected ? 'Selected' : isDisabled ? 'Disabled' : 'Available'}</span>
+      </div>
+      <div className='flex gap-1'>
+        <span className="font-bold">Seat: </span><span>{seat.row}{seat.name}</span>
+      </div>
+      <div className='flex gap-1'>
+        <span className="font-bold">Price: </span><span>${seat.price}</span>
       </div>
     </div>
   );
