@@ -2,6 +2,10 @@ import { IconNames } from "components/Icons";
 import { seatStyles } from 'components/Seat';
 import { AirplaneData, EmergencyExit, Seat, SeatState, SeatType, SeatsRow, SeatLocation, FlightInformation, LegendSeat } from "types";
 
+const unavailableSeats = ['1A', '1D', '3C', '4C', '6B', '6C', '8D', '8E', '8K', '13D', '15K', '18A', '19D', '19K'];
+
+const getSeatAvailability = (seat: string) => unavailableSeats.includes(seat) ? SeatState.UNAVAILABLE : SeatState.AVAILABLE;
+
 const generateSeat = (row: string, name: string, price: number, state: SeatState, type: SeatType, location: SeatLocation): Seat => ({
   row,
   name,
@@ -11,16 +15,39 @@ const generateSeat = (row: string, name: string, price: number, state: SeatState
   location,
 });
 
+enum SEATS {
+  A = 'A',
+  B = 'B',
+  C = 'C',
+  D = 'D',
+  E = 'E',
+  K = 'K'
+};
+
 const generateFirstClassRow = (title: string): SeatsRow => ({
   title,
-  leftSeats: [generateSeat(title, 'A', 30000, SeatState.UNAVAILABLE, SeatType.FIRST_CLASS, SeatLocation.WINDOW), generateSeat(title, 'B', 24000, SeatState.AVAILABLE, SeatType.FIRST_CLASS, SeatLocation.STANDARD)],
-  rightSeats: [generateSeat(title, 'D', 24000, SeatState.AVAILABLE, SeatType.FIRST_CLASS, SeatLocation.CORRIDOR), generateSeat(title, 'E', 30000, SeatState.AVAILABLE, SeatType.FIRST_CLASS, SeatLocation.WINDOW)],
+  leftSeats: [
+    generateSeat(title, SEATS.A, 30000, getSeatAvailability(`${title}${SEATS.A}`), SeatType.FIRST_CLASS, SeatLocation.WINDOW),
+    generateSeat(title, 'B', 24000, getSeatAvailability(`${title}B`), SeatType.FIRST_CLASS, SeatLocation.STANDARD),
+  ],
+  rightSeats: [
+    generateSeat(title, 'D', 24000, getSeatAvailability(`${title}D`), SeatType.FIRST_CLASS, SeatLocation.CORRIDOR),
+    generateSeat(title, 'E', 30000, getSeatAvailability(`${title}E`), SeatType.FIRST_CLASS, SeatLocation.WINDOW),
+  ],
 });
 
 const generateEconomyRow = (title: string): SeatsRow => ({
   title,
-  leftSeats: [generateSeat(title, 'A', 15000, SeatState.AVAILABLE, SeatType.ECONOMY, SeatLocation.WINDOW), generateSeat(title, 'B', 12000, SeatState.AVAILABLE, SeatType.ECONOMY, SeatLocation.STANDARD), generateSeat(title, 'C', 10000, SeatState.AVAILABLE, SeatType.ECONOMY, SeatLocation.CORRIDOR)],
-  rightSeats: [generateSeat(title, 'D', 10000, SeatState.AVAILABLE, SeatType.ECONOMY, SeatLocation.CORRIDOR), generateSeat(title, 'E', 12000, SeatState.AVAILABLE, SeatType.ECONOMY, SeatLocation.STANDARD), generateSeat(title, 'K', 15000, SeatState.AVAILABLE, SeatType.ECONOMY, SeatLocation.WINDOW)],
+  leftSeats: [
+    generateSeat(title, SEATS.A, 15000, getSeatAvailability(`${title}${SEATS.A}`), SeatType.ECONOMY, SeatLocation.WINDOW),
+    generateSeat(title, SEATS.B, 12000, getSeatAvailability(`${title}${SEATS.B}`), SeatType.ECONOMY, SeatLocation.STANDARD),
+    generateSeat(title, SEATS.C, 10000, getSeatAvailability(`${title}${SEATS.C}`), SeatType.ECONOMY, SeatLocation.CORRIDOR),
+  ],
+  rightSeats: [
+    generateSeat(title, SEATS.D, 10000, getSeatAvailability(`${title}${SEATS.E}`), SeatType.ECONOMY, SeatLocation.CORRIDOR),
+    generateSeat(title, SEATS.E, 12000, getSeatAvailability(`${title}${SEATS.E}`), SeatType.ECONOMY, SeatLocation.STANDARD),
+    generateSeat(title, SEATS.K, 15000, getSeatAvailability(`${title}${SEATS.K}`), SeatType.ECONOMY, SeatLocation.WINDOW),
+  ],
 });
 
 const generateEmergencyExit = (): EmergencyExit => ({
@@ -31,8 +58,8 @@ const generateEmergencyExit = (): EmergencyExit => ({
 export const airplaneSeatsDataMock: AirplaneData[] = [
   {
     title: 'First Class',
-    leftHeaders: ['A', 'B'],
-    rightHeaders: ['C', 'D'],
+    leftHeaders: [SEATS.A, SEATS.B],
+    rightHeaders: [SEATS.C, SEATS.D],
     rows: [
       generateFirstClassRow('1'),
       generateFirstClassRow('2'),
@@ -42,8 +69,8 @@ export const airplaneSeatsDataMock: AirplaneData[] = [
   },
   {
     title: 'Economy',
-    leftHeaders: ['A', 'B', 'C'],
-    rightHeaders: ['D', 'E', 'K'],
+    leftHeaders: [SEATS.A, SEATS.B, SEATS.C],
+    rightHeaders: [SEATS.D, SEATS.E, SEATS.K],
     rows: [
       generateEconomyRow('4'),
       generateEconomyRow('5'),
