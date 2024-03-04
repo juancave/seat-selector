@@ -124,5 +124,11 @@ export const airplaneInformationDataMock: FlightInformation = {
     model: 'Airbus',
     reference: '380',
     capacity: 80,
-  }
+  },
+  reservation: {
+    seats: 3,
+    defaultSeats: ['20D', '20E', '20K'],
+    name: 'Juan Camilo Velásquez',
+    code: 'RES7566',
+  },
 };

@@ -4,8 +4,15 @@ import { airplaneSeatsDataMock, airplaneInformationDataMock, legendSeatsMockData
 import Cart from 'components/Cart';
 import AirplaneLegend from 'components/AirplaneLegend';
 import FlightInformation from 'components/FlightInformation';
+import useCartStore from 'store/cart';
 
 const AirplanePage: React.FC = () => {
+  const setSeatsLimit = useCartStore((state) => state.setSeatsLimit);
+
+  React.useEffect(() => {
+    setSeatsLimit(airplaneInformationDataMock.reservation.seats);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <div className="flex md:flex-row md:items-start flex-col items-center justify-center gap-10 mt-10">  
       <AirplaneSeats data={airplaneInformationDataMock} sections={airplaneSeatsDataMock} />

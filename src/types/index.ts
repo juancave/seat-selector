@@ -33,11 +33,19 @@ export interface Schedule {
   readonly date: string;
 }
 
+export interface FlightReservation {
+  readonly seats: number;
+  readonly defaultSeats: string[];
+  readonly name: string;
+  readonly code: string;
+}
+
 export interface FlightInformation {
   readonly origin: Airport;
   readonly destination: Airport;
   readonly aircraft: Aircraft;
   readonly schedule: Schedule;
+  readonly reservation: FlightReservation;
 }
 
 export enum SeatState {

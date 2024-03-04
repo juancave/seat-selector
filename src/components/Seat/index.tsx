@@ -21,6 +21,7 @@ const Seat: React.FC<Props> = (p: Props) => {
   const removeSeat = useCartStore((state) => state.removeSeat);
   const cartSeats = useCartStore((state) => state.seats);
   const soldSeats = useCartStore((state) => state.soldSeats);
+  const seatsLimit = useCartStore((state) => state.seatsLimit);
   const isDisabled = [SeatState.BUSY, SeatState.UNAVAILABLE].includes(p.seat.state)
     || soldSeats.some((seat) => seat.name === p.seat.name && seat.row === p.seat.row);
   const isSelected = cartSeats.some((seat) => seat.name === p.seat.name && seat.row === p.seat.row);
@@ -28,6 +29,10 @@ const Seat: React.FC<Props> = (p: Props) => {
   const showDetail = () => setShowInfo(true);
   const hideDetail = () => setShowInfo(false);
   const onButtonClick = () => {
+    if (seatsLimit === cartSeats.length) {
+      return;
+    }
+    
     if (isDisabled) {
       return;
     }
@@ -41,7 +46,7 @@ const Seat: React.FC<Props> = (p: Props) => {
   };
 
   return (
-    <div className="relative">  
+    <div className="relative">
       {showInfo && (
         <SeatInformation
           isDisabled={isDisabled}

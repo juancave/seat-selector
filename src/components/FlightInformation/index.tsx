@@ -9,6 +9,22 @@ interface Props {
 const FlightInformation: React.FC<Props> = (p: Props) => {
   return (
     <div className="flex flex-col w-72 gap-3 rounded overflow-hidden p-4 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
+      <div className='flex justify-between items-center'>
+        <div className='flex flex-col'>
+          <span className='text-sm font-bold'>Reservation:</span>
+        </div>
+        <div className='flex flex-col'>
+          <span className='text-sm font-bold'>{p.data.reservation.code}</span>
+        </div>
+      </div>
+      <div className='flex justify-between items-center border-b-4 pb-3'>
+        <div className='flex flex-col'>
+          <span className='text-sm font-bold'>Seats:</span>
+        </div>
+        <div className='flex flex-col'>
+          <span className='text-sm font-bold'>{p.data.reservation.seats}</span>
+        </div>
+      </div>
       <div className='flex justify-between items-center border-b-4 pb-1'>
         <div className='flex flex-col'>
           <span className='text-sm font-bold'>{p.data.origin.city}</span>
