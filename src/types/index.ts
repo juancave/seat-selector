@@ -11,6 +11,7 @@ export interface SeatsRow {
   readonly title: string;
   readonly leftSeats: Seat[];
   readonly rightSeats: Seat[];
+  readonly seats: Seat[];
 }
 
 export interface Airport {
@@ -65,6 +66,11 @@ export enum SeatLocation {
   STANDARD = 'standard',
 }
 
+export enum SeatPosition {
+  LEFT = 'left',
+  RIGHT = 'right',
+}
+
 export interface Seat {
   readonly row: string;
   readonly price: number;
@@ -72,6 +78,7 @@ export interface Seat {
   readonly name: string;
   readonly type: SeatType;
   readonly location: SeatLocation;
+  readonly position: SeatPosition;
 }
 
 export interface EmergencyExit {

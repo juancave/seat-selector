@@ -1,18 +1,30 @@
 import { IconNames } from "components/Icons";
 import { seatStyles } from 'components/Seat';
-import { AirplaneData, EmergencyExit, Seat, SeatState, SeatType, SeatsRow, SeatLocation, FlightInformation, LegendSeat } from "types";
+import {
+  AirplaneData,
+  EmergencyExit,
+  Seat,
+  SeatState,
+  SeatType,
+  SeatsRow,
+  SeatLocation,
+  FlightInformation,
+  LegendSeat,
+  SeatPosition,
+} from "types";
 
 const unavailableSeats = ['1A', '1D', '3C', '4C', '6B', '6C', '8D', '8E', '8K', '13D', '15K', '18A', '19D', '19K'];
 
 const getSeatAvailability = (seat: string) => unavailableSeats.includes(seat) ? SeatState.UNAVAILABLE : SeatState.AVAILABLE;
 
-const generateSeat = (row: string, name: string, price: number, state: SeatState, type: SeatType, location: SeatLocation): Seat => ({
+const generateSeat = (row: string, name: string, price: number, state: SeatState, type: SeatType, location: SeatLocation, position: SeatPosition): Seat => ({
   row,
   name,
   price,
   state,
   type,
   location,
+  position,
 });
 
 enum SEATS {
@@ -26,27 +38,41 @@ enum SEATS {
 
 const generateFirstClassRow = (title: string): SeatsRow => ({
   title,
+  seats: [
+    generateSeat(title, SEATS.A, 30000, getSeatAvailability(`${title}${SEATS.A}`), SeatType.FIRST_CLASS, SeatLocation.WINDOW, SeatPosition.LEFT),
+    generateSeat(title, SEATS.B, 24000, getSeatAvailability(`${title}B`), SeatType.FIRST_CLASS, SeatLocation.STANDARD, SeatPosition.LEFT),
+    generateSeat(title, SEATS.D, 24000, getSeatAvailability(`${title}D`), SeatType.FIRST_CLASS, SeatLocation.CORRIDOR, SeatPosition.RIGHT),
+    generateSeat(title, SEATS.E, 30000, getSeatAvailability(`${title}E`), SeatType.FIRST_CLASS, SeatLocation.WINDOW, SeatPosition.RIGHT),
+  ],
   leftSeats: [
-    generateSeat(title, SEATS.A, 30000, getSeatAvailability(`${title}${SEATS.A}`), SeatType.FIRST_CLASS, SeatLocation.WINDOW),
-    generateSeat(title, 'B', 24000, getSeatAvailability(`${title}B`), SeatType.FIRST_CLASS, SeatLocation.STANDARD),
+    generateSeat(title, SEATS.A, 30000, getSeatAvailability(`${title}${SEATS.A}`), SeatType.FIRST_CLASS, SeatLocation.WINDOW, SeatPosition.LEFT),
+    generateSeat(title, SEATS.B, 24000, getSeatAvailability(`${title}B`), SeatType.FIRST_CLASS, SeatLocation.STANDARD, SeatPosition.LEFT),
   ],
   rightSeats: [
-    generateSeat(title, 'D', 24000, getSeatAvailability(`${title}D`), SeatType.FIRST_CLASS, SeatLocation.CORRIDOR),
-    generateSeat(title, 'E', 30000, getSeatAvailability(`${title}E`), SeatType.FIRST_CLASS, SeatLocation.WINDOW),
+    generateSeat(title, SEATS.D, 24000, getSeatAvailability(`${title}D`), SeatType.FIRST_CLASS, SeatLocation.CORRIDOR, SeatPosition.RIGHT),
+    generateSeat(title, SEATS.E, 30000, getSeatAvailability(`${title}E`), SeatType.FIRST_CLASS, SeatLocation.WINDOW, SeatPosition.RIGHT),
   ],
 });
 
 const generateEconomyRow = (title: string): SeatsRow => ({
   title,
+  seats: [
+    generateSeat(title, SEATS.A, 15000, getSeatAvailability(`${title}${SEATS.A}`), SeatType.ECONOMY, SeatLocation.WINDOW, SeatPosition.LEFT),
+    generateSeat(title, SEATS.B, 12000, getSeatAvailability(`${title}${SEATS.B}`), SeatType.ECONOMY, SeatLocation.STANDARD, SeatPosition.LEFT),
+    generateSeat(title, SEATS.C, 10000, getSeatAvailability(`${title}${SEATS.C}`), SeatType.ECONOMY, SeatLocation.CORRIDOR, SeatPosition.LEFT),
+    generateSeat(title, SEATS.D, 10000, getSeatAvailability(`${title}${SEATS.E}`), SeatType.ECONOMY, SeatLocation.CORRIDOR, SeatPosition.RIGHT),
+    generateSeat(title, SEATS.E, 12000, getSeatAvailability(`${title}${SEATS.E}`), SeatType.ECONOMY, SeatLocation.STANDARD, SeatPosition.RIGHT),
+    generateSeat(title, SEATS.K, 15000, getSeatAvailability(`${title}${SEATS.K}`), SeatType.ECONOMY, SeatLocation.WINDOW, SeatPosition.RIGHT),
+  ],
   leftSeats: [
-    generateSeat(title, SEATS.A, 15000, getSeatAvailability(`${title}${SEATS.A}`), SeatType.ECONOMY, SeatLocation.WINDOW),
-    generateSeat(title, SEATS.B, 12000, getSeatAvailability(`${title}${SEATS.B}`), SeatType.ECONOMY, SeatLocation.STANDARD),
-    generateSeat(title, SEATS.C, 10000, getSeatAvailability(`${title}${SEATS.C}`), SeatType.ECONOMY, SeatLocation.CORRIDOR),
+    generateSeat(title, SEATS.A, 15000, getSeatAvailability(`${title}${SEATS.A}`), SeatType.ECONOMY, SeatLocation.WINDOW, SeatPosition.LEFT),
+    generateSeat(title, SEATS.B, 12000, getSeatAvailability(`${title}${SEATS.B}`), SeatType.ECONOMY, SeatLocation.STANDARD, SeatPosition.LEFT),
+    generateSeat(title, SEATS.C, 10000, getSeatAvailability(`${title}${SEATS.C}`), SeatType.ECONOMY, SeatLocation.CORRIDOR, SeatPosition.LEFT),
   ],
   rightSeats: [
-    generateSeat(title, SEATS.D, 10000, getSeatAvailability(`${title}${SEATS.E}`), SeatType.ECONOMY, SeatLocation.CORRIDOR),
-    generateSeat(title, SEATS.E, 12000, getSeatAvailability(`${title}${SEATS.E}`), SeatType.ECONOMY, SeatLocation.STANDARD),
-    generateSeat(title, SEATS.K, 15000, getSeatAvailability(`${title}${SEATS.K}`), SeatType.ECONOMY, SeatLocation.WINDOW),
+    generateSeat(title, SEATS.D, 10000, getSeatAvailability(`${title}${SEATS.E}`), SeatType.ECONOMY, SeatLocation.CORRIDOR, SeatPosition.RIGHT),
+    generateSeat(title, SEATS.E, 12000, getSeatAvailability(`${title}${SEATS.E}`), SeatType.ECONOMY, SeatLocation.STANDARD, SeatPosition.RIGHT),
+    generateSeat(title, SEATS.K, 15000, getSeatAvailability(`${title}${SEATS.K}`), SeatType.ECONOMY, SeatLocation.WINDOW, SeatPosition.RIGHT),
   ],
 });
 

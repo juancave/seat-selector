@@ -8,9 +8,11 @@ import useCartStore from 'store/cart';
 
 const AirplanePage: React.FC = () => {
   const setSeatsLimit = useCartStore((state) => state.setSeatsLimit);
+  const setDefaultSeats = useCartStore((state) => state.setDefaultSeats);
 
   React.useEffect(() => {
     setSeatsLimit(airplaneInformationDataMock.reservation.seats);
+    setDefaultSeats(airplaneInformationDataMock.reservation.defaultSeats);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (

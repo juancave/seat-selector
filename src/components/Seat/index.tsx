@@ -29,16 +29,16 @@ const Seat: React.FC<Props> = (p: Props) => {
   const showDetail = () => setShowInfo(true);
   const hideDetail = () => setShowInfo(false);
   const onButtonClick = () => {
-    if (seatsLimit === cartSeats.length) {
-      return;
-    }
-    
     if (isDisabled) {
       return;
     }
 
     if (isSelected) {
       removeSeat(p.seat);
+      return;
+    }
+
+    if (seatsLimit === cartSeats.length) {
       return;
     }
 
