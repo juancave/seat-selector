@@ -13,14 +13,17 @@ const AirplaneLegend: React.FC<Props> = (p: Props) => {
       {p.data.map((legend, index) => {
         const Icon = legend.icon ? ICONS[legend.icon] : null;
         return (
-          <div key={index} className={`flex justify-between items-center pb-1 ${index === p.data.length - 1 ? '' : 'border-b-4'}`}>
-            <div className='flex flex-row gap-1 items-center'>
+          <div
+            key={index}
+            className={`flex justify-between items-center pb-1 ${index === p.data.length - 1 ? '' : 'border-b-4'}`}
+          >
+            <div className="flex flex-row gap-1 items-center">
               <div className={`${seatStyles.base} ${legend.styles}`}>
                 {Icon && <Icon />}
               </div>
-              <span className='text-sm'>{legend.text}</span>
+              <span className="text-sm">{legend.text}</span>
             </div>
-            <span className='text-sm font-bold'>{legend.price}</span>
+            <span className="text-sm font-bold">{legend.price}</span>
           </div>
         );
       })}

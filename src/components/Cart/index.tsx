@@ -13,12 +13,12 @@ const Cart: React.FC = () => {
       <div className="flex flex-col gap-1">
         {seats.map((seat, index) => (
           <div key={index} className="flex justify-between">
-            <span>
+            <span className="flex gap-1">
               <span className="font-bold">
                 {seat.row}
                 {seat.name}
-              </span>{' '}
-              -{' '}
+              </span>
+              <span>-</span>
               {seat.selectedByDefault ? (
                 <span>$0 - Included</span>
               ) : (

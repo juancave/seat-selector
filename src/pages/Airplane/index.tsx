@@ -14,9 +14,13 @@ import { AirplaneData, Seat, SeatsRow } from 'types';
 const AirplanePage: React.FC = () => {
   const setSeatsLimit = useCartStore((state) => state.setSeatsLimit);
   const setDefaultSeats = useCartStore((state) => state.setDefaultSeats);
+  const defaultSeats = useCartStore((state) => state.defaultSeats);
   const addSeat = useCartStore((state) => state.addSeat);
 
   React.useEffect(() => {
+    if (defaultSeats.length) {
+      return;
+    }
     setSeatsLimit(airplaneInformationDataMock.reservation.seats);
     setDefaultSeats(airplaneInformationDataMock.reservation.defaultSeats);
 
