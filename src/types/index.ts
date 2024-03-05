@@ -4,14 +4,13 @@ export type AirplaneData = {
   readonly title: string;
   readonly leftHeaders: string[];
   readonly rightHeaders: string[];
-  readonly rows: (SeatsRow | EmergencyExit)[];
+  readonly rows: SeatsRow[];
 }
 
 export interface SeatsRow {
   readonly title: string;
-  readonly leftSeats: Seat[];
-  readonly rightSeats: Seat[];
   readonly seats: Seat[];
+  readonly emergencyExit?: EmergencyExit;
 }
 
 export interface Airport {
@@ -79,6 +78,7 @@ export interface Seat {
   readonly type: SeatType;
   readonly location: SeatLocation;
   readonly position: SeatPosition;
+  readonly selectedByDefault?: boolean;
 }
 
 export interface EmergencyExit {

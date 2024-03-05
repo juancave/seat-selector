@@ -16,7 +16,7 @@ const Cart: React.FC = () => {
             <span>
               <span className='font-bold'>
                 {seat.row}{seat.name}
-              </span> - <span>${seat.price}</span>
+              </span> - {seat.selectedByDefault ? <span>$0 - Included</span> : <span>${seat.price}</span>}
             </span>
             <button
               className='bg-white hover:bg-gray-100 text-gray-800 font-semibold px-1 py-0 border border-gray-400 rounded shadow'

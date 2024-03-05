@@ -20,6 +20,7 @@ const Seat: React.FC<Props> = (p: Props) => {
   const addSeat = useCartStore((state) => state.addSeat);
   const removeSeat = useCartStore((state) => state.removeSeat);
   const cartSeats = useCartStore((state) => state.seats);
+  const defaultSeats = useCartStore((state) => state.defaultSeats);
   const soldSeats = useCartStore((state) => state.soldSeats);
   const seatsLimit = useCartStore((state) => state.seatsLimit);
   const isDisabled = [SeatState.BUSY, SeatState.UNAVAILABLE].includes(p.seat.state)
@@ -42,7 +43,12 @@ const Seat: React.FC<Props> = (p: Props) => {
       return;
     }
 
-    addSeat(p.seat);
+    const selectedByDefault = defaultSeats.some((defaultSeat) => `${p.seat.row}${p.seat.name}` === defaultSeat);
+
+    addSeat({
+      ...p.seat,
+      selectedByDefault,
+    });
   };
 
   return (
@@ -99,7 +105,7 @@ const SeatInformation: React.FC<{
         <span className="font-bold">Seat: </span><span>{seat.row}{seat.name}</span>
       </div>
       <div className='flex gap-1'>
-        <span className="font-bold">Price: </span><span>${seat.price}</span>
+        <span className="font-bold">Price: </span>{seat.selectedByDefault ? <span>$0 - Included</span> : <span>${seat.price}</span>}
       </div>
     </div>
   );

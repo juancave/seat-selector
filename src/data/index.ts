@@ -36,25 +36,18 @@ enum SEATS {
   K = 'K'
 };
 
-const generateFirstClassRow = (title: string): SeatsRow => ({
+const generateFirstClassRow = (title: string, emergencyExit?: EmergencyExit): SeatsRow => ({
   title,
   seats: [
     generateSeat(title, SEATS.A, 30000, getSeatAvailability(`${title}${SEATS.A}`), SeatType.FIRST_CLASS, SeatLocation.WINDOW, SeatPosition.LEFT),
-    generateSeat(title, SEATS.B, 24000, getSeatAvailability(`${title}B`), SeatType.FIRST_CLASS, SeatLocation.STANDARD, SeatPosition.LEFT),
-    generateSeat(title, SEATS.D, 24000, getSeatAvailability(`${title}D`), SeatType.FIRST_CLASS, SeatLocation.CORRIDOR, SeatPosition.RIGHT),
-    generateSeat(title, SEATS.E, 30000, getSeatAvailability(`${title}E`), SeatType.FIRST_CLASS, SeatLocation.WINDOW, SeatPosition.RIGHT),
+    generateSeat(title, SEATS.B, 24000, getSeatAvailability(`${title}${SEATS.B}`), SeatType.FIRST_CLASS, SeatLocation.STANDARD, SeatPosition.LEFT),
+    generateSeat(title, SEATS.C, 24000, getSeatAvailability(`${title}${SEATS.C}`), SeatType.FIRST_CLASS, SeatLocation.CORRIDOR, SeatPosition.RIGHT),
+    generateSeat(title, SEATS.D, 30000, getSeatAvailability(`${title}${SEATS.D}`), SeatType.FIRST_CLASS, SeatLocation.WINDOW, SeatPosition.RIGHT),
   ],
-  leftSeats: [
-    generateSeat(title, SEATS.A, 30000, getSeatAvailability(`${title}${SEATS.A}`), SeatType.FIRST_CLASS, SeatLocation.WINDOW, SeatPosition.LEFT),
-    generateSeat(title, SEATS.B, 24000, getSeatAvailability(`${title}B`), SeatType.FIRST_CLASS, SeatLocation.STANDARD, SeatPosition.LEFT),
-  ],
-  rightSeats: [
-    generateSeat(title, SEATS.D, 24000, getSeatAvailability(`${title}D`), SeatType.FIRST_CLASS, SeatLocation.CORRIDOR, SeatPosition.RIGHT),
-    generateSeat(title, SEATS.E, 30000, getSeatAvailability(`${title}E`), SeatType.FIRST_CLASS, SeatLocation.WINDOW, SeatPosition.RIGHT),
-  ],
+  emergencyExit,
 });
 
-const generateEconomyRow = (title: string): SeatsRow => ({
+const generateEconomyRow = (title: string, emergencyExit?: EmergencyExit): SeatsRow => ({
   title,
   seats: [
     generateSeat(title, SEATS.A, 15000, getSeatAvailability(`${title}${SEATS.A}`), SeatType.ECONOMY, SeatLocation.WINDOW, SeatPosition.LEFT),
@@ -64,16 +57,7 @@ const generateEconomyRow = (title: string): SeatsRow => ({
     generateSeat(title, SEATS.E, 12000, getSeatAvailability(`${title}${SEATS.E}`), SeatType.ECONOMY, SeatLocation.STANDARD, SeatPosition.RIGHT),
     generateSeat(title, SEATS.K, 15000, getSeatAvailability(`${title}${SEATS.K}`), SeatType.ECONOMY, SeatLocation.WINDOW, SeatPosition.RIGHT),
   ],
-  leftSeats: [
-    generateSeat(title, SEATS.A, 15000, getSeatAvailability(`${title}${SEATS.A}`), SeatType.ECONOMY, SeatLocation.WINDOW, SeatPosition.LEFT),
-    generateSeat(title, SEATS.B, 12000, getSeatAvailability(`${title}${SEATS.B}`), SeatType.ECONOMY, SeatLocation.STANDARD, SeatPosition.LEFT),
-    generateSeat(title, SEATS.C, 10000, getSeatAvailability(`${title}${SEATS.C}`), SeatType.ECONOMY, SeatLocation.CORRIDOR, SeatPosition.LEFT),
-  ],
-  rightSeats: [
-    generateSeat(title, SEATS.D, 10000, getSeatAvailability(`${title}${SEATS.E}`), SeatType.ECONOMY, SeatLocation.CORRIDOR, SeatPosition.RIGHT),
-    generateSeat(title, SEATS.E, 12000, getSeatAvailability(`${title}${SEATS.E}`), SeatType.ECONOMY, SeatLocation.STANDARD, SeatPosition.RIGHT),
-    generateSeat(title, SEATS.K, 15000, getSeatAvailability(`${title}${SEATS.K}`), SeatType.ECONOMY, SeatLocation.WINDOW, SeatPosition.RIGHT),
-  ],
+  emergencyExit,
 });
 
 const generateEmergencyExit = (): EmergencyExit => ({
@@ -89,8 +73,7 @@ export const airplaneSeatsDataMock: AirplaneData[] = [
     rows: [
       generateFirstClassRow('1'),
       generateFirstClassRow('2'),
-      generateEmergencyExit(),
-      generateFirstClassRow('3'),
+      generateFirstClassRow('3', generateEmergencyExit()),
     ],
   },
   {
@@ -103,8 +86,7 @@ export const airplaneSeatsDataMock: AirplaneData[] = [
       generateEconomyRow('6'),
       generateEconomyRow('7'),
       generateEconomyRow('8'),
-      generateEmergencyExit(),
-      generateEconomyRow('9'),
+      generateEconomyRow('9', generateEmergencyExit()),
       generateEconomyRow('10'),
       generateEconomyRow('11'),
       generateEconomyRow('12'),
@@ -114,8 +96,7 @@ export const airplaneSeatsDataMock: AirplaneData[] = [
       generateEconomyRow('16'),
       generateEconomyRow('17'),
       generateEconomyRow('18'),
-      generateEmergencyExit(),
-      generateEconomyRow('19'),
+      generateEconomyRow('19', generateEmergencyExit()),
       generateEconomyRow('20'),
     ],
   },
