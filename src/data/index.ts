@@ -39,6 +39,7 @@ enum SEATS {
 
 const generateFirstClassRow = (title: string, emergencyExit?: EmergencyExit): SeatsRow => ({
   title,
+  sectionsLocations: [SeatPosition.LEFT, SeatPosition.RIGHT],
   seats: [
     generateSeat(title, SEATS.A, 30000, getSeatAvailability(`${title}${SEATS.A}`), SeatType.FIRST_CLASS, SeatLocation.WINDOW, SeatPosition.LEFT),
     generateSeat(title, SEATS.B, 24000, getSeatAvailability(`${title}${SEATS.B}`), SeatType.FIRST_CLASS, SeatLocation.STANDARD, SeatPosition.LEFT),
@@ -50,6 +51,7 @@ const generateFirstClassRow = (title: string, emergencyExit?: EmergencyExit): Se
 
 const generateEconomyRow = (title: string, emergencyExit?: EmergencyExit): SeatsRow => ({
   title,
+  sectionsLocations: [SeatPosition.LEFT, SeatPosition.RIGHT],
   seats: [
     generateSeat(title, SEATS.A, 15000, getSeatAvailability(`${title}${SEATS.A}`), SeatType.ECONOMY, SeatLocation.WINDOW, SeatPosition.LEFT),
     generateSeat(title, SEATS.B, 12000, getSeatAvailability(`${title}${SEATS.B}`), SeatType.ECONOMY, SeatLocation.STANDARD, SeatPosition.LEFT),
@@ -106,31 +108,31 @@ export const airplaneSeatsDataMock: AirplaneData[] = [
 export const legendSeatsMockData: LegendSeat[] = [
   {
     icon: IconNames.BUSY_SEAT,
-    styles: seatStyles.disabled,
+    styles: `${seatStyles.disabled} ${seatStyles.size}`,
     text: 'Unavailable',
     price: '$...',
   },
   {
     icon: IconNames.SELECTED_SEAT,
-    styles: seatStyles.selected,
+    styles: `${seatStyles.selected} ${seatStyles.size}`,
     text: 'Selected',
     price: '$...',
   },
   {
     icon: IconNames.PREMIUN_SEAT,
-    styles: seatStyles.available,
+    styles: `${seatStyles.available} ${seatStyles.size}`,
     text: 'First Class',
     price: 'From $20000',
   },
   {
     icon: IconNames.BEST_SEAT,
-    styles: seatStyles.available,
+    styles: `${seatStyles.available} ${seatStyles.size}`,
     text: 'Best View',
     price: 'From $15000',
   },
   {
     icon: null,
-    styles: seatStyles.available,
+    styles: `${seatStyles.available} ${seatStyles.size}`,
     text: 'Standart Seat',
     price: 'From $10000',
   },

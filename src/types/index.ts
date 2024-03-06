@@ -2,14 +2,15 @@ import { IconNames } from "components/Icons";
 
 export type AirplaneData = {
   readonly title: string;
-  readonly leftHeaders: string[];
-  readonly rightHeaders: string[];
+  readonly leftHeaders?: string[];
+  readonly rightHeaders?: string[];
   readonly rows: SeatsRow[];
 }
 
 export interface SeatsRow {
   readonly title: string;
   readonly seats: Seat[];
+  readonly sectionsLocations: SeatPosition[];
   readonly emergencyExit?: EmergencyExit;
 }
 
@@ -57,13 +58,40 @@ export enum SeatState {
 export enum SeatType {
   ECONOMY = 'economy',
   FIRST_CLASS = 'first_class',
+
+  VIP = 'vip',
+  PLATINUM = 'platinum',
+  BALCONY = 'balcony',
 }
+
+export const SeatTypeName = {
+  [SeatType.ECONOMY]: 'Economy',
+  [SeatType.FIRST_CLASS]: 'First Class',
+
+  [SeatType.VIP]: 'VIP',
+  [SeatType.PLATINUM]: 'Platinum',
+  [SeatType.BALCONY]: 'Balcony',
+};
 
 export enum SeatLocation {
   CORRIDOR = 'corridor',
   WINDOW = 'window',
   STANDARD = 'standard',
+
+  LEFT = 'left',
+  RIGHT = 'right',
+  CENTER = 'center',
 }
+
+export const SeatLocationName = {
+  [SeatLocation.CORRIDOR]: 'Corridor',
+  [SeatLocation.WINDOW]: 'Window',
+  [SeatLocation.STANDARD]: 'Standard',
+
+  [SeatLocation.LEFT]: 'Left',
+  [SeatLocation.RIGHT]: 'Right',
+  [SeatLocation.CENTER]: 'Center',
+};
 
 export enum SeatPosition {
   LEFT = 'left',

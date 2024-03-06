@@ -4,6 +4,8 @@ import {
   SeatType as SeatTypeEnum,
   SeatLocation,
   Seat as SeatType,
+  SeatTypeName,
+  SeatLocationName,
 } from 'types';
 import useCartStore from 'store/cart';
 import classNames from 'classnames';
@@ -13,13 +15,16 @@ import {
   PremiunSeat,
   SelectedSeat,
 } from 'components/Icons';
+import { SeatsContext, ContextType } from 'context';
 
 interface Props {
   readonly seat: SeatType;
 }
 
 export const seatStyles = {
-  base: 'border rounded-md shadow w-10 h-10 flex items-center justify-center',
+  sizeSm: 'w-5 h-5',
+  size: 'w-10 h-10',
+  base: 'border rounded-md shadow flex items-center justify-center',
   selected:
     'bg-fuchsia-600 border-fuchsia-700 hover:bg-fuchsia-700 hover:border-fuchsia-600',
   disabled: 'bg-gray-100 border-gray-300 hover:gray-200 hover:border-gray-400',
@@ -27,6 +32,8 @@ export const seatStyles = {
 };
 
 const Seat: React.FC<Props> = (p: Props) => {
+  const seatsType = React.useContext(SeatsContext);
+
   const [showInfo, setShowInfo] = React.useState<boolean>(false);
   const addSeat = useCartStore((state) => state.addSeat);
   const removeSeat = useCartStore((state) => state.removeSeat);
@@ -34,14 +41,11 @@ const Seat: React.FC<Props> = (p: Props) => {
   const defaultSeats = useCartStore((state) => state.defaultSeats);
   const soldSeats = useCartStore((state) => state.soldSeats);
   const seatsLimit = useCartStore((state) => state.seatsLimit);
+
   const isDisabled =
     [SeatState.BUSY, SeatState.UNAVAILABLE].includes(p.seat.state) ||
-    soldSeats.some(
-      (seat) => seat.name === p.seat.name && seat.row === p.seat.row,
-    );
-  const isSelected = cartSeats.some(
-    (seat) => seat.name === p.seat.name && seat.row === p.seat.row,
-  );
+    soldSeats.some((seat) => seat.id === p.seat.id);
+  const isSelected = cartSeats.some((seat) => seat.id === p.seat.id);
 
   const showDetail = () => setShowInfo(true);
   const hideDetail = () => setShowInfo(false);
@@ -80,6 +84,8 @@ const Seat: React.FC<Props> = (p: Props) => {
       )}
       <div
         className={classNames(seatStyles.base, {
+          [seatStyles.sizeSm]: seatsType === ContextType.THEATER,
+          [seatStyles.size]: seatsType === ContextType.AIRPLANE,
           [seatStyles.disabled]: isDisabled,
           'cursor-not-allowed': isDisabled,
           [seatStyles.selected]: isSelected,
@@ -92,15 +98,19 @@ const Seat: React.FC<Props> = (p: Props) => {
         onMouseLeave={hideDetail}
         onClick={onButtonClick}
       >
-        {p.seat.type === SeatTypeEnum.FIRST_CLASS &&
-          !isDisabled &&
-          !isSelected && <PremiunSeat />}
-        {p.seat.type !== SeatTypeEnum.FIRST_CLASS &&
-          p.seat.location === SeatLocation.WINDOW &&
-          !isDisabled &&
-          !isSelected && <BestSeat />}
-        {isDisabled && <BusySeat />}
-        {isSelected && <SelectedSeat />}
+        {seatsType === ContextType.AIRPLANE && (
+          <>
+            {p.seat.type === SeatTypeEnum.FIRST_CLASS &&
+              !isDisabled &&
+              !isSelected && <PremiunSeat />}
+            {p.seat.type !== SeatTypeEnum.FIRST_CLASS &&
+              p.seat.location === SeatLocation.WINDOW &&
+              !isDisabled &&
+              !isSelected && <BestSeat />}
+            {isDisabled && <BusySeat />}
+            {isSelected && <SelectedSeat />}
+          </>
+        )}
       </div>
     </div>
   );
@@ -113,21 +123,29 @@ const SeatInformation: React.FC<{
 }> = ({ isSelected, isDisabled, seat }) => {
   return (
     <div className="flex flex-col self-start absolute gap-1 w-fit h-fit p-3 z-10 bg-zinc-50 shadow-[0_3px_10px_rgb(0,0,0,0.5)] rounded left-12 text-sm">
-      <div className="flex gap-1">
-        <span className="font-bold">Status: </span>
+      <div className="flex gap-1 border-b-2 pb-1">
+        <span className="font-bold">Status:</span>
         <span>
           {isSelected ? 'Selected' : isDisabled ? 'Disabled' : 'Available'}
         </span>
       </div>
       <div className="flex gap-1">
-        <span className="font-bold">Seat: </span>
+        <span className="font-bold">Type:</span>
+        <span>{SeatTypeName[seat.type]}</span>
+      </div>
+      <div className="flex gap-1">
+        <span className="font-bold">Location:</span>
+        <span>{SeatLocationName[seat.location]}</span>
+      </div>
+      <div className="flex gap-1">
+        <span className="font-bold">Seat:</span>
         <span>
           {seat.row}
           {seat.name}
         </span>
       </div>
-      <div className="flex gap-1">
-        <span className="font-bold">Price: </span>
+      <div className="flex gap-1 border-t-2 pt-1">
+        <span className="font-bold">Price:</span>
         {seat.selectedByDefault ? (
           <span>$0 - Included</span>
         ) : (
