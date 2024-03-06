@@ -7,7 +7,7 @@ interface Props {
   readonly data: LegendSeat[];
 }
 
-const AirplaneLegend: React.FC<Props> = (p: Props) => {
+const SeatsLegend: React.FC<Props> = (p: Props) => {
   return (
     <div className="flex flex-col w-72 gap-5 rounded overflow-hidden p-4 shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
       {p.data.map((legend, index) => {
@@ -31,4 +31,4 @@ const AirplaneLegend: React.FC<Props> = (p: Props) => {
   );
 };
 
-export default AirplaneLegend;
+export default SeatsLegend;
