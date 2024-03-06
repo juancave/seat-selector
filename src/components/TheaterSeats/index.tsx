@@ -10,7 +10,7 @@ interface Props {
 const TheaterSeats: React.FC<Props> = (p: Props) => {
   return (
     <SeatsContext.Provider value={ContextType.THEATER}>
-      <div className="flex flex-row items-center w-full p-2 overflow-x-scroll md:w-auto md:overflow-auto md:p-0">
+      <div className="flex flex-row items-center w-full p-2 overflow-x-scroll md:w-auto md:overflow-visible md:p-0">
         <div className="flex flex-col">
           <div className="flex justify-center items-center font-bold py-6 rounded-sm bg-zinc-50 border mb-8">
             Scenery
