@@ -14,10 +14,12 @@ import { SeatsSectionData, Seat, SeatsRow } from 'types';
 const AirplanePage: React.FC = () => {
   const setSeatsLimit = useCartStore((state) => state.setSeatsLimit);
   const setDefaultSeats = useCartStore((state) => state.setDefaultSeats);
+  const discardSeats = useCartStore((state) => state.discardSeats);
   const defaultSeats = useCartStore((state) => state.defaultSeats);
   const addSeat = useCartStore((state) => state.addSeat);
 
   React.useEffect(() => {
+    discardSeats();
     if (defaultSeats.length) {
       return;
     }

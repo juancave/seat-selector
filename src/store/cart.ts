@@ -12,6 +12,7 @@ interface CartStore {
   total: () => number;
   setSeatsLimit: (limit: number) => void;
   setDefaultSeats: (defaultSeats: string[]) => void;
+  discardSeats: () => void;
 }
 
 const useCartStore = create<CartStore>()((set, get) => ({
@@ -29,6 +30,7 @@ const useCartStore = create<CartStore>()((set, get) => ({
   total: () => get().seats.filter((seat) => !seat.selectedByDefault).reduce((total, item) => Math.round((total + item.price) * 100) / 100, 0),
   setSeatsLimit: (limit: number) => set((state) => ({ seatsLimit: limit })),
   setDefaultSeats: (defaultSeats: string[]) => set(() => ({ defaultSeats })),
+  discardSeats: () => set(() => ({ seats: [] })),
 }));
 
 export default useCartStore;
