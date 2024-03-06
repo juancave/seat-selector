@@ -4,7 +4,7 @@ import {
   airplaneSeatsDataMock,
   airplaneInformationDataMock,
   legendSeatsMockData,
-} from 'data';
+} from 'data/airplane';
 import Cart from 'components/Cart';
 import SeatsLegend from 'components/shared/SeatsLegend';
 import FlightInformation from 'components/FlightInformation';
