@@ -22,9 +22,9 @@ const TheaterPage: React.FC = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="flex md:flex-row md:items-start flex-col items-center justify-center gap-10 mt-10 mb-32">
+    <div className="flex lg:flex-row lg:items-start flex-col items-center justify-center gap-10 mt-10 mb-32">
       <TheaterSeats sections={theaterSeatsDataMock} />
-      <div className="flex flex-row gap-10 justify-center md:flex-col flex-wrap md:flex-nowrap md:justify-normal">
+      <div className="flex flex-row gap-10 justify-center lg:flex-col flex-wrap lg:flex-nowrap lg:justify-normal">
         <SeatsLegend data={legendSeatsMockData} />
         <EventInformation data={eventInformationDataMock} />
         <Cart />
