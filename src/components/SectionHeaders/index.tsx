@@ -1,9 +1,9 @@
 import React from 'react';
-import { AirplaneData } from 'types';
+import { SeatsSectionData } from 'types';
 import { SeatsContext, ContextType } from 'context';
 
 interface Props {
-  readonly data: AirplaneData;
+  readonly data: SeatsSectionData;
 }
 
 const SectionHeader: React.FC<{

@@ -1,6 +1,6 @@
 import { IconNames } from "components/Icons";
 
-export type AirplaneData = {
+export type SeatsSectionData = {
   readonly title: string;
   readonly leftHeaders?: string[];
   readonly rightHeaders?: string[];

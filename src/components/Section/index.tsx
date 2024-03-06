@@ -1,12 +1,12 @@
 import React from 'react';
 import SeatRow from 'components/SeatRow';
-import { AirplaneData } from 'types';
+import { SeatsSectionData } from 'types';
 import EmergencyExit from 'components/EmergencyExit';
 import SectionHeaders from 'components/SectionHeaders';
 import { SeatsContext, ContextType } from 'context';
 
 interface Props {
-  readonly data: AirplaneData;
+  readonly data: SeatsSectionData;
 }
 
 const Section: React.FC<Props> = (p: Props) => {

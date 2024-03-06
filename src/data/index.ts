@@ -1,7 +1,7 @@
 import { IconNames } from "components/Icons";
 import { seatStyles } from 'components/Seat';
 import {
-  AirplaneData,
+  SeatsSectionData,
   EmergencyExit,
   Seat,
   SeatState,
@@ -68,7 +68,7 @@ const generateEmergencyExit = (): EmergencyExit => ({
   left: true,
 });
 
-export const airplaneSeatsDataMock: AirplaneData[] = [
+export const airplaneSeatsDataMock: SeatsSectionData[] = [
   {
     title: 'First Class',
     leftHeaders: [SEATS.A, SEATS.B],

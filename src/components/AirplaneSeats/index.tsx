@@ -1,11 +1,11 @@
 import React from 'react';
-import { AirplaneData, FlightInformation } from 'types';
+import { SeatsSectionData, FlightInformation } from 'types';
 import Section from 'components/Section';
 import { ContextType, SeatsContext } from 'context';
 
 interface Props {
   readonly data: FlightInformation;
-  readonly sections: AirplaneData[];
+  readonly sections: SeatsSectionData[];
 }
 
 const AirplaneSeats: React.FC<Props> = (p: Props) => {

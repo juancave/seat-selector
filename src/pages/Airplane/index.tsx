@@ -9,7 +9,7 @@ import Cart from 'components/Cart';
 import SeatsLegend from 'components/shared/SeatsLegend';
 import FlightInformation from 'components/FlightInformation';
 import useCartStore from 'store/cart';
-import { AirplaneData, Seat, SeatsRow } from 'types';
+import { SeatsSectionData, Seat, SeatsRow } from 'types';
 
 const AirplanePage: React.FC = () => {
   const setSeatsLimit = useCartStore((state) => state.setSeatsLimit);
@@ -25,8 +25,8 @@ const AirplanePage: React.FC = () => {
     setDefaultSeats(airplaneInformationDataMock.reservation.defaultSeats);
 
     const seats = airplaneSeatsDataMock.reduce(
-      (seats: Seat[], currentSeat: AirplaneData) => {
-        const seatsPerRow = currentSeat.rows.reduce(
+      (seats: Seat[], currentSeatSectionData: SeatsSectionData) => {
+        const seatsPerRow = currentSeatSectionData.rows.reduce(
           (seatsPerRow: Seat[], currentSeatRow: SeatsRow) => {
             seatsPerRow = [...seatsPerRow, ...currentSeatRow.seats];
 
