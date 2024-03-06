@@ -18,6 +18,7 @@ const unavailableSeats = ['1A', '1D', '3C', '4C', '6B', '6C', '8D', '8E', '8K', 
 const getSeatAvailability = (seat: string) => unavailableSeats.includes(seat) ? SeatState.UNAVAILABLE : SeatState.AVAILABLE;
 
 const generateSeat = (row: string, name: string, price: number, state: SeatState, type: SeatType, location: SeatLocation, position: SeatPosition): Seat => ({
+  id: `${row}${name}-${type}-${location}`,
   row,
   name,
   price,

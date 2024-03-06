@@ -25,10 +25,10 @@ const useCartStore = create<CartStore>()((set, get) => ({
   },
   addSeat: (seat: Seat) => set((state) => ({ seats: [...state.seats, seat] })),
   removeSeat: (seat: Seat) =>
-    set((state) => ({ seats: state.seats.filter((item) => item.name !== seat.name || item.row !== seat.row) })),
+    set((state) => ({ seats: state.seats.filter((item) => item.id !== seat.id) })),
   total: () => get().seats.filter((seat) => !seat.selectedByDefault).reduce((total, item) => Math.round((total + item.price) * 100) / 100, 0),
   setSeatsLimit: (limit: number) => set((state) => ({ seatsLimit: limit })),
-  setDefaultSeats: (defaultSeats: string[]) => set((state) => ({ defaultSeats })),
+  setDefaultSeats: (defaultSeats: string[]) => set(() => ({ defaultSeats })),
 }));
 
 export default useCartStore;

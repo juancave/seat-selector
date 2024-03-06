@@ -68,9 +68,11 @@ export enum SeatLocation {
 export enum SeatPosition {
   LEFT = 'left',
   RIGHT = 'right',
+  CENTER = 'center',
 }
 
 export interface Seat {
+  readonly id: string;
   readonly row: string;
   readonly price: number;
   readonly state: SeatState;
