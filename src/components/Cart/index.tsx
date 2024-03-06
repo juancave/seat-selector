@@ -5,6 +5,7 @@ import { SeatLocationName, SeatTypeName } from 'types';
 const Cart: React.FC = () => {
   const seats = useCartStore((state) => state.seats);
   const total = useCartStore((state) => state.total());
+  const discardSeats = useCartStore((state) => state.discardSeats);
   const removeSeat = useCartStore((state) => state.removeSeat);
   const syncSoldSeats = useCartStore((state) => state.syncSoldSeats);
 
@@ -60,11 +61,21 @@ const Cart: React.FC = () => {
       </div>
       <button
         className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+        disabled={!seats.length}
         onClick={() => syncSoldSeats()}
         type="button"
       >
         Confirm seats
       </button>
+      {!!seats.length && (
+        <button
+          className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+          onClick={() => discardSeats()}
+          type="button"
+        >
+          Discard seats
+        </button>
+      )}
     </div>
   );
 };
