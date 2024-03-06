@@ -10,6 +10,7 @@ import {
   SeatPosition,
   LegendSeat,
 } from "types";
+import { EventInformation } from 'types/theater';
 
 const unavailableSeats = [
   `A3-${SeatType.VIP}-${SeatLocation.CENTER}`,
@@ -242,3 +243,19 @@ export const legendSeatsMockData: LegendSeat[] = [
     price: 'From $16000',
   },
 ];
+
+export const eventInformationDataMock: EventInformation = {
+  title: 'Quilapayún + Inti Illimani',
+  date: 'Saturday, 27 April 2024',
+  time: '20:00',
+  theater: {
+    name: 'Teatro Metropolitano de Medellin',
+    code: 'TMM',
+    capacity: 500,
+    address: 'Cl. 41 #57-30',
+    city: 'Medellín',
+    state: 'Antioquia',
+    country: 'Colombia',
+  },
+  seats: 10,
+};

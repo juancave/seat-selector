@@ -130,7 +130,7 @@ const SeatInformation: React.FC<{
         </span>
       </div>
       <div className="flex gap-1">
-        <span className="font-bold">Type:</span>
+        <span className="font-bold">Section:</span>
         <span>{SeatTypeName[seat.type]}</span>
       </div>
       <div className="flex gap-1">

@@ -1,9 +1,14 @@
 import React from 'react';
 import Cart from 'components/Cart';
 import TheaterSeats from 'components/TheaterSeats';
-import { legendSeatsMockData, theaterSeatsDataMock } from 'data/theater';
+import {
+  eventInformationDataMock,
+  legendSeatsMockData,
+  theaterSeatsDataMock,
+} from 'data/theater';
 import useCartStore from 'store/cart';
 import SeatsLegend from 'components/shared/SeatsLegend';
+import EventInformation from 'components/EventInformation';
 
 const TheaterPage: React.FC = () => {
   const setSeatsLimit = useCartStore((state) => state.setSeatsLimit);
@@ -11,7 +16,7 @@ const TheaterPage: React.FC = () => {
   const discardSeats = useCartStore((state) => state.discardSeats);
 
   React.useEffect(() => {
-    setSeatsLimit(10);
+    setSeatsLimit(eventInformationDataMock.seats);
     setDefaultSeats([]);
     discardSeats();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -21,6 +26,7 @@ const TheaterPage: React.FC = () => {
       <TheaterSeats sections={theaterSeatsDataMock} />
       <div className="flex flex-row gap-10 justify-center md:flex-col flex-wrap md:flex-nowrap md:justify-normal">
         <SeatsLegend data={legendSeatsMockData} />
+        <EventInformation data={eventInformationDataMock} />
         <Cart />
       </div>
     </div>
