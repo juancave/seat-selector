@@ -249,7 +249,7 @@ export const eventInformationDataMock: EventInformation = {
   date: 'Saturday, 27 April 2024',
   time: '20:00',
   theater: {
-    name: 'Teatro Metropolitano de Medellin',
+    name: 'Teatro Metropolitano',
     code: 'TMM',
     capacity: 500,
     address: 'Cl. 41 #57-30',

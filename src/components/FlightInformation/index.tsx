@@ -1,6 +1,6 @@
 import React from 'react';
 import { Calendar, RightArrow } from 'components/Icons';
-import { FlightInformation as FlightInformationType } from 'types';
+import { FlightInformation as FlightInformationType } from 'types/airplane';
 
 interface Props {
   readonly data: FlightInformationType;

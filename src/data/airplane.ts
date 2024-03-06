@@ -8,10 +8,10 @@ import {
   SeatType,
   SeatsRow,
   SeatLocation,
-  FlightInformation,
   LegendSeat,
   SeatPosition,
 } from "types";
+import { FlightInformation } from "types/airplane";
 
 const unavailableSeats = ['1A', '1D', '3C', '4C', '6B', '6C', '8D', '8E', '8K', '13D', '15K', '18A', '19D', '19K'];
 

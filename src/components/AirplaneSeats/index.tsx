@@ -1,7 +1,8 @@
 import React from 'react';
-import { SeatsSectionData, FlightInformation } from 'types';
+import { SeatsSectionData } from 'types';
 import Section from 'components/Section';
 import { ContextType, SeatsContext } from 'context';
+import { FlightInformation } from 'types/airplane';
 
 interface Props {
   readonly data: FlightInformation;

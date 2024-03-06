@@ -21,14 +21,14 @@ const EventInformation: React.FC<Props> = ({ data }) => {
       </div>
       <div className="flex justify-between items-center">
         <Briefcase />
-        <div className="flex flex-col">
-          <span className="text-sm font-bold">{data.theater.name}</span>
-        </div>
-      </div>
-      <div className="flex justify-end items-center border-b-4 pb-2">
         <span className="text-sm font-bold">
           {data.theater.city}, {data.theater.state}, {data.theater.country}
         </span>
+      </div>
+      <div className="flex justify-end items-center border-b-4 pb-2">
+        <div className="flex flex-col">
+          <span className="text-sm font-bold">{data.theater.name}</span>
+        </div>
       </div>
       <div className="flex justify-between items-center">
         <Markdown />
